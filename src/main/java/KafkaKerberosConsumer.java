@@ -22,8 +22,8 @@ public class KafkaKerberosConsumer {
 
     public static void main(String[] args) {
         // Kerberos认证所需配置
-        System.setProperty("java.security.krb5.conf", "E:\\kafka-kerberos-study\\src\\main\\resources\\krb5.conf");
-        System.setProperty("java.security.auth.login.config", "E:\\kafka-kerberos-study\\src\\main\\resources\\kafka-jaas.conf");
+        System.setProperty("java.security.krb5.conf", "D:\\myWorkspace\\kafka-kerberos-study\\src\\main\\resources\\krb5.conf");
+        System.setProperty("java.security.auth.login.config", "D:\\myWorkspace\\kafka-kerberos-study\\src\\main\\resources\\kafka-jaas.conf");
 
         // kafka相关配置
         Properties props = new Properties();

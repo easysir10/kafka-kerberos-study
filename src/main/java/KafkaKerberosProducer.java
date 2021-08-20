@@ -22,8 +22,8 @@ public class KafkaKerberosProducer {
 
     public static void main(String[] args) {
         // Kerberos认证所需配置
-        System.setProperty("java.security.krb5.conf", "E:\\kafka-kerberos-study\\src\\main\\resources\\krb5.conf");
-        System.setProperty("java.security.auth.login.config", "E:\\kafka-kerberos-study\\src\\main\\resources\\kafka-jaas.conf");
+        System.setProperty("java.security.krb5.conf", "D:\\myWorkspace\\kafka-kerberos-study\\src\\main\\resources\\krb5.conf");
+        System.setProperty("java.security.auth.login.config", "D:\\myWorkspace\\kafka-kerberos-study\\src\\main\\resources\\kafka-jaas.conf");
 
         // kafka相关配置
         Properties props = new Properties();
@@ -40,10 +40,15 @@ public class KafkaKerberosProducer {
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
         int i = 1;
         do {
-            String message = "{\"id\":" + i + ",\"time\":" + new Date() + "}";
+            String message = "hello word " + i;
             LOGGER.info("推送数据:{}", message);
             // 推送数据
             producer.send(new ProducerRecord<>("test", message));
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } while (i++ <= COUNT);
     }
 }
