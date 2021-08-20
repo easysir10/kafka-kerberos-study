@@ -22,11 +22,12 @@ public class KafkaKerberosProducer {
 
     public static void main(String[] args) {
         // Kerberos认证所需配置
-        System.setProperty("java.security.krb5.conf", "D:\\myWorkspace\\kafka-kerberos-study\\src\\main\\resources\\krb5.conf");
-        System.setProperty("java.security.auth.login.config", "D:\\myWorkspace\\kafka-kerberos-study\\src\\main\\resources\\kafka-jaas.conf");
+        System.setProperty("java.security.krb5.conf", "E:\\kafka-kerberos-study\\src\\main\\resources\\krb5.conf");
+        System.setProperty("java.security.auth.login.config", "E:\\kafka-kerberos-study\\src\\main\\resources\\kafka-jaas.conf");
 
         // kafka相关配置
         Properties props = new Properties();
+        //集群地址，多个地址用"，"分隔
         props.put("bootstrap.servers", "1.15.154.243:9092");
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
@@ -39,7 +40,7 @@ public class KafkaKerberosProducer {
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
         int i = 1;
         do {
-            String message = "{\"id\":" + i + ",\"date" + i + "\":" + new Date() + "}";
+            String message = "{\"id\":" + i + ",\"time\":" + new Date() + "}";
             LOGGER.info("推送数据:{}", message);
             // 推送数据
             producer.send(new ProducerRecord<>("test", message));
